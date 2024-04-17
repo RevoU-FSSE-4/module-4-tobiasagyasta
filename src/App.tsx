@@ -1,9 +1,9 @@
 import { useState } from "react";
-import First from "./components/First";
-import Second from "./components/Second";
-import Third from "./components/Third";
+import First from "./pages/First";
+import Second from "./pages/Second";
+import Third from "./pages/Third";
 import { Formik, Form } from "formik";
-import personalInfoSchema from "./components/schemas/personalInfoSchema";
+import FormSchema from "./schemas/FormSchema";
 
 const App = () => {
 	const [page, setPage] = useState(0);
@@ -35,20 +35,20 @@ const App = () => {
 				initialValues={{
 					fullName: "",
 					email: "",
-					dateOfBirth: new Date().toISOString(),
+					dateOfBirth: "",
 				}}
 				onSubmit={(values, actions) => {
 					alert(JSON.stringify(values, null, 2));
 					actions.setSubmitting(false);
 				}}
-				validationSchema={personalInfoSchema}
+				validationSchema={FormSchema}
 			>
 				<Form>
 					{conditionalComponent()}
 					<button
 						className='flex bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded mx-auto'
 						onClick={handleSubmit}
-						type='submit'
+						type={page === 1 || page === 2 ? "button" : "submit"}
 					>
 						{page === 0 || page === 1 ? "Next" : "Submit"}
 					</button>
