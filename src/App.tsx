@@ -4,7 +4,6 @@ import Second from "./components/Second";
 import Third from "./components/Third";
 import { Formik, Form } from "formik";
 import personalInfoSchema from "./components/schemas/personalInfoSchema";
-import * as Yup from "yup";
 
 const App = () => {
 	const [page, setPage] = useState(0);
