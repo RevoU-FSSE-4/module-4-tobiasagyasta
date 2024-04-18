@@ -27,7 +27,7 @@ const FormSchema = Yup.object().shape({
 	state: Yup.string().required("State required!"),
 	zipCode: Yup.string()
 		.required("Zip Code required!")
-		.matches(/^\d+$/gi, "Type in a valid zip code! (digits only")
+		.matches(/^\d+$/gi, "Type in a valid zip code! (digits only)")
 		.max(5, "Zip code must be at most 5 digits."),
 	userName: Yup.string()
 		.required("Username required!")

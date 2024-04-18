@@ -48,17 +48,15 @@ const App = () => {
 				onSubmit={(values, actions) => {
 					// setFormData(values);
 					alert(`You have submitted! \n` + JSON.stringify(values, null, 2));
-					actions.setSubmitting(false);	
+					actions.setSubmitting(false);
 					actions.resetForm();
 				}}
 				validationSchema={FormSchema}
 			>
-				<Form>
+				<Form className='max-w-md mx-auto'>
 					{conditionalComponent()}
 					<button
-						className={` ${
-							page < 3 ? "flex" : "hidden"
-						} bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded mx-auto`}
+						className={`flex bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded mx-auto`}
 						onClick={handleNext}
 						type={page === 1 || page === 2 ? "button" : "submit"}
 					>
