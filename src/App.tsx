@@ -48,7 +48,7 @@ const App = () => {
 				onSubmit={(values, actions) => {
 					// setFormData(values);
 					alert(`You have submitted! \n` + JSON.stringify(values, null, 2));
-					actions.setSubmitting(false);
+					actions.setSubmitting(false);	
 					actions.resetForm();
 				}}
 				validationSchema={FormSchema}
