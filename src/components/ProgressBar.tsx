@@ -18,7 +18,7 @@ const ProgressBar = ({
 		);
 	}, [visualParts]);
 	return (
-		<div className='flex h-[6px] my-10 mx-0 '>
+		<div className='flex h-[6px] my-10 mx-0 border border-gray-100 '>
 			{visualParts.map((item, index) => {
 				return (
 					<div

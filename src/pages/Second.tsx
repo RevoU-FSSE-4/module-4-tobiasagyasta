@@ -10,7 +10,7 @@ const Second = () => {
 			<ProgressBar
 				visualParts={[
 					{
-						percentage: "66.6%",
+						percentage: "55%",
 						color: "#3B82F6",
 					},
 				]}
