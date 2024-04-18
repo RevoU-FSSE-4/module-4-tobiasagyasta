@@ -27,7 +27,9 @@ const App = () => {
 		}
 	}
 	function handlePrevious() {
-		setPage(page - 1);
+		if (page > 0) {
+			setPage(page - 1);
+		}
 	}
 	return (
 		<>
@@ -36,6 +38,12 @@ const App = () => {
 					fullName: "",
 					email: "",
 					dateOfBirth: "",
+					streetAddress: "",
+					city: "",
+					state: "",
+					zipCode: "",
+					userName: "",
+					password: "",
 				}}
 				onSubmit={(values, actions) => {
 					alert(JSON.stringify(values, null, 2));
@@ -53,10 +61,11 @@ const App = () => {
 						{page === 0 || page === 1 ? "Next" : "Submit"}
 					</button>
 					<button
-						className={`bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded mx-auto ${
+						className={`bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded mx-auto mt-3 ${
 							page > 0 ? `flex` : `hidden`
 						}`}
 						onClick={handlePrevious}
+						type='button'
 					>
 						{page > 0 ? "Previous" : null}
 					</button>

@@ -1,5 +1,4 @@
 import SingleInput from "../components/SingleInput";
-import DateInput from "../components/DateInput";
 
 const First = () => {
 	return (
@@ -15,7 +14,7 @@ const First = () => {
 					>
 						Full Name
 					</label>
-					<SingleInput name='fullName' />
+					<SingleInput name='fullName' type='text' />
 				</div>
 
 				<div className='w-full md:w-1/2 px-3'>
@@ -25,7 +24,7 @@ const First = () => {
 					>
 						Email
 					</label>
-					<SingleInput name='email' />
+					<SingleInput name='email' type='text' />
 				</div>
 				<div className='w-full md:w-1/2 px-3 mb-3 md:mb-8 mt-5'>
 					<label
@@ -34,7 +33,7 @@ const First = () => {
 					>
 						Date of Birth
 					</label>
-					<DateInput name='dateOfBirth' />
+					<SingleInput name='dateOfBirth' type='date' />
 				</div>
 			</div>
 		</>

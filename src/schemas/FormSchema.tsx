@@ -1,4 +1,6 @@
 import * as Yup from "yup";
+import YupPassword from "yup-password";
+YupPassword(Yup);
 
 const eighteenAgeDate = new Date().setFullYear(
 	new Date().getFullYear() - 18,
@@ -8,10 +10,10 @@ const eighteenAgeDate = new Date().setFullYear(
 
 const FormSchema = Yup.object().shape({
 	fullName: Yup.string()
-		.required("Required!")
-		.matches(/^[a-zA-Z\s]+$/, "Type in a valid name."),
+		.required("Full name required!")
+		.matches(/^[a-zA-Z\s]+$/gi, "Type in a valid name."),
 	email: Yup.string()
-		.required("Required!")
+		.required("Email required!")
 		.matches(/\w+@\w+\./gi, "Type in a valid email."),
 	dateOfBirth: Yup.date()
 		.required("Date of birth required")
@@ -20,6 +22,28 @@ const FormSchema = Yup.object().shape({
 			new Date(eighteenAgeDate).toISOString(),
 			"You must be 18 or older to join!"
 		),
+	streetAddress: Yup.string().required("Street address required!"),
+	city: Yup.string().required("City required!"),
+	state: Yup.string().required("State required!"),
+	zipCode: Yup.string()
+		.required("Zip Code required!")
+		.matches(/^\d+$/gi, "Type in a valid zip code! (digits only")
+		.max(5, "Zip code must be at most 5 digits."),
+	userName: Yup.string()
+		.required("Username required!")
+		.matches(
+			/^[a-zA-Z0-9_]+$/g,
+			"Type in a valid username! (Allows upper and lower case letters, numbers, and underscore)"
+		)
+		.min(5, "Username must be at least 5 characters.")
+		.max(15, "Username must be at most 15 characters."),
+	password: Yup.string()
+		.required("Password required!")
+		.min(5, "Password must contain at least 5 characters")
+		.minLowercase(1, "Password must contain at least 1 lower case letter")
+		.minUppercase(1, "Password must contain at least 1 Upper Case letter")
+		.minNumbers(1, "Password must contain at least 1 number")
+		.minSymbols(1, "Password must contain at least 1 symbol"),
 });
 
 export default FormSchema;
