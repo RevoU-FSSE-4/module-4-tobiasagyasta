@@ -7,6 +7,8 @@ import FormSchema from "./schemas/FormSchema";
 
 const App = () => {
 	const [page, setPage] = useState(0);
+	// const [formData, setFormData] = useState({});
+
 	const conditionalComponent = () => {
 		switch (page) {
 			case 0:
@@ -19,7 +21,7 @@ const App = () => {
 				return <First />;
 		}
 	};
-	function handleSubmit() {
+	function handleNext() {
 		if (page >= 2) {
 			setPage(0);
 		} else {
@@ -27,9 +29,7 @@ const App = () => {
 		}
 	}
 	function handlePrevious() {
-		if (page > 0) {
-			setPage(page - 1);
-		}
+		setPage(page - 1);
 	}
 	return (
 		<>
@@ -46,16 +46,20 @@ const App = () => {
 					password: "",
 				}}
 				onSubmit={(values, actions) => {
-					alert(JSON.stringify(values, null, 2));
+					// setFormData(values);
+					alert(`You have submitted! \n` + JSON.stringify(values, null, 2));
 					actions.setSubmitting(false);
+					actions.resetForm();
 				}}
 				validationSchema={FormSchema}
 			>
 				<Form>
 					{conditionalComponent()}
 					<button
-						className='flex bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded mx-auto'
-						onClick={handleSubmit}
+						className={` ${
+							page < 3 ? "flex" : "hidden"
+						} bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded mx-auto`}
+						onClick={handleNext}
 						type={page === 1 || page === 2 ? "button" : "submit"}
 					>
 						{page === 0 || page === 1 ? "Next" : "Submit"}

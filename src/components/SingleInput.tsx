@@ -10,7 +10,6 @@ const SingleInput = (props: any) => {
 		<>
 			<input
 				className='appearance-none block w-50 bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white'
-				autoComplete='off'
 				type={props.type}
 				name={props.name}
 				onChange={field.onChange}
