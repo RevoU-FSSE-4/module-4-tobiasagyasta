@@ -1,5 +1,6 @@
 import SingleInput from "../components/SingleInput";
 import { useState } from "react";
+import ProgressBar from "../components/ProgressBar";
 const Third = () => {
 	const [passwordField, setPasswordField] = useState("password");
 	function handleCheckbox() {
@@ -14,7 +15,14 @@ const Third = () => {
 			<h1 className='text-3xl text-center font-bold dark:text-white'>
 				Account Information
 			</h1>
-
+			<ProgressBar
+				visualParts={[
+					{
+						percentage: "100%",
+						color: "#3B82F6",
+					},
+				]}
+			/>
 			<div className='relative z-0 w-full my-5 group'>
 				<SingleInput name='userName' type='text' />
 				<label

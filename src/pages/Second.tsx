@@ -1,4 +1,5 @@
 import SingleInput from "../components/SingleInput";
+import ProgressBar from "../components/ProgressBar";
 
 const Second = () => {
 	return (
@@ -6,6 +7,14 @@ const Second = () => {
 			<h1 className='text-3xl text-center font-bold dark:text-white'>
 				Address Information
 			</h1>
+			<ProgressBar
+				visualParts={[
+					{
+						percentage: "66.6%",
+						color: "#3B82F6",
+					},
+				]}
+			/>
 			<div className='relative z-0 w-full my-5 group'>
 				<SingleInput name='streetAddress' type='text' />
 				<label
