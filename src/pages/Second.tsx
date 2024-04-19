@@ -15,7 +15,7 @@ const Second = () => {
 			/>
 			<div className='flex flex-row justify-between items-center'>
 				<SideBar page={1} />
-				<div className='w-8/12 mb-6'>
+				<div className='w-11/12 mb-6'>
 					<div className='relative z-0 w-full my-5 group'>
 						<SingleInput name='streetAddress' type='text' />
 						<label

@@ -13,9 +13,9 @@ const First = () => {
 					},
 				]}
 			/>
-			<div className='flex flex-row justify-between items-center'>
+			<div className='flex flex-row justify-around items-center'>
 				<SideBar page={0} />
-				<div className='w-8/12 mb-10'>
+				<div className='w-11/12 mb-10'>
 					<div className='relative z-0 w-full my-5 group'>
 						<SingleInput name='fullName' type='text' />
 						<label
