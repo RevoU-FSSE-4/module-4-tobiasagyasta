@@ -18,9 +18,7 @@ const SingleInput = (props: any) => {
 				onFocus={setTouchOnFocus}
 				placeholder=''
 			/>
-			{meta.error && meta.touched && (
-				<div className='text-sm text-red-600'>{meta.error}</div>
-			)}
+			{meta.error && <div className='text-sm text-red-600'>{meta.error}</div>}
 		</>
 	);
 };
