@@ -104,10 +104,12 @@ const App = () => {
 					actions.resetForm({ isValidating: true });
 				}}
 				validationSchema={FormSchema}
-				validateOnMount={true}
 			>
 				{(props) => (
 					<Form className='max-w-md mx-auto'>
+						<h1 className='text-center mb-4 text-2xl font-extrabold leading-none tracking-tight text-gray-900 md:text-3xl lg:text-4xl dark:text-white '>
+							Toby's React Form
+						</h1>
 						{conditionalComponent()}
 						<button
 							className={` flex bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded mx-auto`}
