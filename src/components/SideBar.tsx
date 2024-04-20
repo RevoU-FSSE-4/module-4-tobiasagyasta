@@ -1,5 +1,3 @@
-import React from "react";
-
 const SideBar = (page: any) => {
 	const pageNumber: any = Object.values(page)[0];
 	function completedStep() {

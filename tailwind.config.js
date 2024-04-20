@@ -5,6 +5,11 @@ module.exports = {
 		transitionDuration: {
 			DEFAULT: "1000ms",
 		},
+		fontFamily: {
+			sans: ["ui-sans-serif", "system-ui"],
+			serif: ["ui-serif"],
+			mono: ["ui-monospace", "SFMono-Regular"],
+		},
 		extend: {},
 	},
 	plugins: [],
