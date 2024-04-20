@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 const ProgressBar = ({
 	visualParts = [{ percentage: "0%", color: "white" }],
 }) => {
