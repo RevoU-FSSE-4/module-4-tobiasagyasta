@@ -21,7 +21,8 @@ const FormSchema = Yup.object().shape({
 		.max(
 			new Date(eighteenAgeDate).toISOString(),
 			"You must be 18 or older to join!"
-		),
+		)
+		.min(new Date(0).toISOString(), "Invalid date!"),
 	streetAddress: Yup.string().required("Street address required!"),
 	city: Yup.string().required("City required!"),
 	state: Yup.string().required("State required!"),
@@ -40,10 +41,22 @@ const FormSchema = Yup.object().shape({
 	password: Yup.string()
 		.required("Password required!")
 		.min(5, "Password must contain at least 5 characters")
-		.minLowercase(1, "Password must contain at least 1 lower case letter")
-		.minUppercase(1, "Password must contain at least 1 Upper Case letter")
-		.minNumbers(1, "Password must contain at least 1 number")
-		.minSymbols(1, "Password must contain at least 1 symbol"),
+		.minLowercase(
+			1,
+			"Password must contain at least : 1 lower case letter,  1 Upper Case letter, 1 number, and 1 symbol. "
+		)
+		.minUppercase(
+			1,
+			"Password must contain at least : 1 lower case letter,  1 Upper Case letter, 1 number, and 1 symbol."
+		)
+		.minNumbers(
+			1,
+			"Password must contain at least : 1 lower case letter,  1 Upper Case letter, 1 number, and 1 symbol."
+		)
+		.minSymbols(
+			1,
+			"Password must contain at least : 1 lower case letter,  1 Upper Case letter, 1 number, and 1 symbol."
+		),
 });
 
 export default FormSchema;
