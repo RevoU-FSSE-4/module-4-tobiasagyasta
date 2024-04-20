@@ -116,7 +116,7 @@ const App = () => {
 							onClick={(e) => {
 								handleNext(e, props.errors);
 							}}
-							type={page === 1 || page === 2 ? "button" : "submit"}
+							type='button'
 						>
 							{page === 0 || page === 1 ? "Next" : "Submit"}
 						</button>
