@@ -2,9 +2,9 @@ const SideBar = (page: any) => {
 	const pageNumber: any = Object.values(page)[0];
 	function completedStep() {
 		return (
-			<span className='absolute flex items-center justify-center w-8 h-8 bg-green-200 rounded-full -start-4 ring-4 ring-white dark:ring-gray-900 dark:bg-green-900'>
+			<span className='absolute flex items-center justify-center w-8 h-8 bg-green-200 rounded-full -start-4 ring-4 ring-white '>
 				<svg
-					className='w-3.5 h-3.5 text-green-500 dark:text-green-400'
+					className='w-3.5 h-3.5 text-green-500 '
 					aria-hidden='true'
 					xmlns='http://www.w3.org/2000/svg'
 					fill='none'
@@ -24,9 +24,9 @@ const SideBar = (page: any) => {
 	function defaultStep(pageNumber: number) {
 		if (pageNumber === 0) {
 			return (
-				<span className='absolute flex items-center justify-center w-8 h-8 bg-gray-100 rounded-full -start-4 ring-4 ring-white dark:ring-gray-900 dark:bg-gray-700'>
+				<span className='absolute flex items-center justify-center w-8 h-8 bg-gray-100 rounded-full -start-4 ring-4 ring-white '>
 					<svg
-						className='w-3.5 h-3.5 text-gray-500 dark:text-gray-400'
+						className='w-3.5 h-3.5 text-gray-500 '
 						aria-hidden='true'
 						xmlns='http://www.w3.org/2000/svg'
 						fill='currentColor'
@@ -39,9 +39,9 @@ const SideBar = (page: any) => {
 		}
 		if (pageNumber === 1) {
 			return (
-				<span className='absolute flex items-center justify-center w-8 h-8 bg-gray-100 rounded-full -start-4 ring-4 ring-white dark:ring-gray-900 dark:bg-gray-700'>
+				<span className='absolute flex items-center justify-center w-8 h-8 bg-gray-100 rounded-full -start-4 ring-4 ring-white '>
 					<svg
-						className='w-3.5 h-3.5 text-gray-500 dark:text-gray-400'
+						className='w-3.5 h-3.5 text-gray-500 '
 						aria-hidden='true'
 						xmlns='http://www.w3.org/2000/svg'
 						fill='currentColor'
@@ -59,9 +59,9 @@ const SideBar = (page: any) => {
 		}
 		if (pageNumber === 2) {
 			return (
-				<span className='absolute flex items-center justify-center w-8 h-8 bg-gray-100 rounded-full -start-4 ring-4 ring-white dark:ring-gray-900 dark:bg-gray-700'>
+				<span className='absolute flex items-center justify-center w-8 h-8 bg-gray-100 rounded-full -start-4 ring-4 ring-white '>
 					<svg
-						className='w-6 h-6 text-gray-500 dark:text-gray-400'
+						className='w-6 h-6 text-gray-500 '
 						aria-hidden='true'
 						xmlns='http://www.w3.org/2000/svg'
 						fill='currentColor'
@@ -79,7 +79,7 @@ const SideBar = (page: any) => {
 	}
 
 	return (
-		<ol className='relative text-gray-500 border-s border-gray-200 dark:border-gray-700 dark:text-gray-400'>
+		<ol className='relative text-gray-500 border-s border-gray-200 '>
 			<li className='mb-6 ms-6'>
 				{pageNumber === 0 && completedStep()}
 				{pageNumber !== 0 && defaultStep(0)}

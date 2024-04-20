@@ -107,7 +107,7 @@ const App = () => {
 			>
 				{(props) => (
 					<Form className='max-w-md mx-auto'>
-						<h1 className='text-center mb-4 text-2xl font-extrabold leading-none tracking-tight text-gray-900 md:text-3xl lg:text-4xl dark:text-white '>
+						<h1 className='text-center mb-4 text-2xl font-extrabold leading-none tracking-tight text-gray-900 md:text-3xl lg:text-4xl'>
 							Toby's React Form
 						</h1>
 						{conditionalComponent()}
