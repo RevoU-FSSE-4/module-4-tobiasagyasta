@@ -3,5 +3,5 @@
 @tailwind utilities;
 
 * {
-	font-family: "ui-sans-serif", "system-ui", "Times New Roman", Times, serif;
+  font-family: "ui-sans-serif", "system-ui", "Times New Roman", Times, serif;
 }
