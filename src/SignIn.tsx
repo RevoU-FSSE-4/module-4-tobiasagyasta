@@ -3,7 +3,7 @@ import SingleInput from "./components/SingleInput";
 import { useEffect, useState } from "react";
 
 export const SignIn = () => {
-  const [data, setData] = useState(null);
+  const [data, setData] = useState<any>({});
 
   useEffect(() => {
     const fetchData = async () => {
@@ -59,7 +59,9 @@ export const SignIn = () => {
               Sign in to your account
             </h2>
           </div>
-          <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm"></div>
+          <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+            {data !== null ? data.title : null}
+          </div>
         </div>
       </Formik>
     </>
