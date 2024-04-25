@@ -1,9 +1,11 @@
 import { Formik, Form, Field } from "formik";
 import SingleInput from "./components/SingleInput";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export const SignIn = () => {
 	const [token, setToken] = useState<string>("");
+	const navigate = useNavigate();
 
 	const handleLogout = async () => {
 		const headers: HeadersInit = {
@@ -48,6 +50,7 @@ export const SignIn = () => {
 			const data = await response.json();
 			setToken(data.token);
 			localStorage.setItem("token", data.token);
+			navigate("/");
 		} catch (error) {
 			console.error("Error occured when logging in:", error);
 		}
@@ -80,9 +83,9 @@ export const SignIn = () => {
 				}}
 				onSubmit={(values, actions) => {
 					alert(`You have submitted! \n` + JSON.stringify(values, null, 2));
-					handleSubmit(values);
 					actions.setSubmitting(false);
 					actions.resetForm({ isValidating: true });
+					handleSubmit(values);
 				}}
 			>
 				<div className='flex min-h-full flex-col justify-center px-6 py-12 lg:px-8'>
@@ -106,13 +109,7 @@ export const SignIn = () => {
 							Sign in to your account
 						</h2>
 					</div>
-					<div className='mt-10 sm:mx-auto sm:w-full sm:max-w-sm'>
-						{token !== "" ? token : null}
-						<br />
-						{token !== "" ? (
-							<button onClick={handleLogout}> Logout</button>
-						) : null}
-					</div>
+					<div className='mt-10 sm:mx-auto sm:w-full sm:max-w-sm'></div>
 				</div>
 			</Formik>
 		</>
