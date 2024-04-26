@@ -245,7 +245,7 @@ export const CategoryList = (tokenProp: any) => {
 							Description : {category.category_description}
 						</dd>
 						<button
-							className={`w-fit bg-white hover:bg-blue-700 rounded ${
+							className={`w-fit  hover:bg-blue-700 rounded ${
 								category.is_active ? `bg-green-200` : `bg-white`
 							}`}
 							onClick={() => handleDelete(category.id)}
@@ -289,7 +289,7 @@ export const CategoryList = (tokenProp: any) => {
 										}
 									/>
 									<button
-										className={` relative -right-32 w-fit mt-3 bg-white hover:bg-blue-700 rounded ${
+										className={` relative -right-32 w-fit mt-3  hover:bg-blue-700 rounded ${
 											category.is_active ? `bg-green-200` : `bg-white`
 										}`}
 										onClick={() => {
