@@ -55,7 +55,9 @@ The application has the following features:
 
 1. Responsive form sign up and sign in forms, created using Formik and Tailwind.
 2. Strict form validation for sign up using Yup and Yup-password, with each field being required and containing other rules.
-3. User authentication in the API using bearer tokens. Bearer tokens are stored in the localStorage for now.
+3. User authentication in the API using bearer tokens. User **cannot** access category page without a token. Bearer tokens are stored in the localStorage for now.
 4. Add, Update, and Delete categories.
-5. Individual category data is kept for each user.
-6. A simple search bar that highlights category names for filtering.
+5. Prevents users to add new category name with the same name that already exists in the list.
+6. Prevents users to update new category name with **other** names that already exists in the list.
+7. Individual data is kept for each user, and displayed when user succesfully logs in.
+8. A simple search bar that highlights category names for filtering.
