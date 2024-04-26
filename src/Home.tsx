@@ -32,6 +32,9 @@ export const Home = () => {
 							<button className='backdrop-blur-sm transition duration-500 ease-in-out bg-[#FF4F01] border border-[#E2E8F0] translate-y-1 text-white hover:bg-neutral-200 text-lg font-semibold py-3 px-6 rounded-3xl inline-flex items-center'>
 								<Link to='/signup'>Sign Up</Link>
 							</button>
+							<button className='backdrop-blur-sm transition duration-500 ease-in-out bg-[#0112ff] border border-[#E2E8F0] translate-y-1 text-white hover:bg-neutral-200 text-lg font-semibold py-3 px-6 rounded-3xl inline-flex items-center'>
+								<Link to='/signin'>Sign In</Link>
+							</button>
 						</div>
 					</div>
 				</section>
