@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import CategoryList from "./components/CategoryList";
 
 export const HomeSignedIn: React.FC = () => {
@@ -84,19 +84,23 @@ export const HomeSignedIn: React.FC = () => {
 
 	return (
 		<>
-			<div>
+			<div className='bg-gray-900 text-white p-4 flex justify-between items-center'>
 				{loading ? null : (
-					<h1>Welcome to the Categories App {username && ` ${username}!`}</h1>
+					<h1 className='text-lg'>
+						Welcome to the Categories App{" "}
+						<strong>{username && ` ${username}!`}</strong>
+					</h1>
 				)}
-				<Link to='/signup' replace>
-					Sign Up!
-				</Link>
-				<Link to='/signin' replace>
-					Sign In!
-				</Link>
-				{token !== "" ? <button onClick={handleLogout}> Logout</button> : null}
+				<div className='flex gap-4'>
+					{token !== "" && (
+						<button onClick={handleLogout} className='hover:text-gray-400'>
+							Logout
+						</button>
+					)}
+				</div>
 			</div>
-			<div>
+
+			<div className='flex justify-evenly items-center'>
 				{!loading && token !== "" && <CategoryList tokenProp={token} />}
 			</div>
 		</>
