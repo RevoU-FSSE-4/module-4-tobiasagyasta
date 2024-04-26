@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import CategoryList from "./components/CategoryList";
 
 export const HomeSignedIn: React.FC = () => {
 	const [token, setToken] = useState<string>("");
@@ -58,52 +59,47 @@ export const HomeSignedIn: React.FC = () => {
 	}, [token]);
 
 	useEffect(() => {
-		setTimeout(async () => {
-			try {
-				const storedToken = localStorage.getItem("token");
-				if (storedToken) {
-					setToken(storedToken);
-				}
-				await loadProfile();
-			} catch (error) {
-				console.log(error);
-			} finally {
-				setLoading(false);
-			}
-		}, 0);
-	}, [token, loadProfile]); // Include token in the dependency array
+		const storedToken = localStorage.getItem("token");
+		if (storedToken) {
+			setToken(storedToken);
+		}
+	}, []);
 
 	useEffect(() => {
 		if (token === "") {
 			const redirectTimer = setTimeout(() => {
 				navigate("/");
 			}, 3000);
-
 			return () => clearTimeout(redirectTimer);
 		}
-	}, [token, navigate, loadProfile]);
-	if (loading) {
-		return (
-			<>
-				{token === "" ? (
-					<h1>You have not signed in! Redirecting page...</h1>
-				) : (
-					<h1>Loading...</h1>
-				)}
-			</>
-		);
-	}
+	}, [token, navigate]);
+
+	useEffect(() => {
+		if (token !== "") {
+			loadProfile().finally(() => setLoading(false));
+		} else {
+			setLoading(false);
+		}
+	}, [token, loadProfile]);
+
 	return (
-		<div>
-			{loading ? null : <h1>Welcome to home page {` ${username}!`}</h1>}
-			<Link to='/signup' replace>
-				Sign Up!
-			</Link>
-			<Link to='/signin' replace>
-				Sign In!
-			</Link>
-			{token !== "" ? <button onClick={handleLogout}> Logout</button> : null}
-		</div>
+		<>
+			<div>
+				{loading ? null : (
+					<h1>Welcome to the Categories App {username && ` ${username}!`}</h1>
+				)}
+				<Link to='/signup' replace>
+					Sign Up!
+				</Link>
+				<Link to='/signin' replace>
+					Sign In!
+				</Link>
+				{token !== "" ? <button onClick={handleLogout}> Logout</button> : null}
+			</div>
+			<div>
+				{!loading && token !== "" && <CategoryList tokenProp={token} />}
+			</div>
+		</>
 	);
 };
 
