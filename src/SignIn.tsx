@@ -6,35 +6,6 @@ import { useNavigate } from "react-router-dom";
 export const SignIn = () => {
 	const [token, setToken] = useState<string>("");
 	const navigate = useNavigate();
-
-	const handleLogout = async () => {
-		const headers: HeadersInit = {
-			Authorization: `Bearer ${token}`, // Include the bearer token
-			"Content-Type": "application/json",
-		};
-		console.log(headers);
-		try {
-			const response = await fetch(
-				"https://library-crud-sample.vercel.app/api/user/logout",
-				{
-					method: "DELETE",
-					headers: headers,
-				}
-			);
-
-			if (!response.ok) {
-				throw new Error("Failed to log out");
-			}
-
-			// Clear the access token from local storage or wherever it's stored
-			localStorage.removeItem("token");
-			setToken("");
-			// Perform any additional logout actions, such as redirecting to the login page
-			// history.push('/login');
-		} catch (error) {
-			console.error("Error occurred while logging out:", error);
-		}
-	};
 	const handleSubmit = async (values: any) => {
 		try {
 			const response = await fetch(
@@ -50,30 +21,11 @@ export const SignIn = () => {
 			const data = await response.json();
 			setToken(data.token);
 			localStorage.setItem("token", data.token);
-			navigate("/");
+			navigate("/signed");
 		} catch (error) {
 			console.error("Error occured when logging in:", error);
 		}
 	};
-
-	// useEffect(() => {
-	// 	const fetchData = async () => {
-	// 		try {
-	// 			const response = await fetch(
-	// 				"https://library-crud-sample.vercel.app/api/user/login"
-	// 			);
-	// 			if (!response.ok) {
-	// 				throw new Error("Failed to fetch!");
-	// 			}
-	// 			const jsonData = await response.json();
-	// 			setData(jsonData);
-	// 		} catch (error) {
-	// 			console.log(error);
-	// 		}
-	// 	};
-	// 	fetchData();
-	// }, []);
-
 	return (
 		<>
 			<Formik
@@ -109,7 +61,11 @@ export const SignIn = () => {
 							Sign in to your account
 						</h2>
 					</div>
-					<div className='mt-10 sm:mx-auto sm:w-full sm:max-w-sm'></div>
+					<div className='mt-10 sm:mx-auto sm:w-full sm:max-w-sm'>
+						{token !== "" ? (
+							<h2> You have signed in! Redirecting page...</h2>
+						) : null}
+					</div>
 				</div>
 			</Formik>
 		</>
