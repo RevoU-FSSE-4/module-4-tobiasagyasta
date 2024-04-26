@@ -10,6 +10,7 @@ export const CategoryList = (tokenProp: any) => {
 	const [newCategoryDescriptionUpdated, setNewCategoryDescriptionUpdated] =
 		useState<string>("");
 	const [hoveredItemId, setHoveredItemId] = useState<string | null>(null);
+	const [searchItem, setSearchItem] = useState<string>("");
 
 	const fetchAfterLoad = async () => {
 		const headers: HeadersInit = {
@@ -72,6 +73,24 @@ export const CategoryList = (tokenProp: any) => {
 	}, []);
 	/* eslint-enable */
 
+	function handleSearch(query: string) {
+		const updatedCategoryData = categoryData.map((category) => {
+			if (category.category_name === query) {
+				// Set category.is_active to true
+				category.is_active = true;
+
+				// After 5 seconds, set category.is_active back to false
+				setTimeout(() => {
+					category.is_active = false;
+					// Update the state to trigger re-render
+					setCategoryData([...categoryData]);
+				}, 5000);
+			}
+			return category;
+		});
+		setCategoryData(updatedCategoryData);
+	}
+
 	async function handlePost() {
 		const headers: HeadersInit = {
 			Authorization: `Bearer ${Object.values(tokenProp)}`, // Include the bearer token
@@ -80,7 +99,7 @@ export const CategoryList = (tokenProp: any) => {
 		const body: BodyInit = JSON.stringify({
 			category_name: newCategoryName,
 			category_description: newCategoryDescription,
-			is_active: true,
+			is_active: false,
 		});
 
 		try {
@@ -158,7 +177,7 @@ export const CategoryList = (tokenProp: any) => {
 			id: id,
 			category_name: newCategoryNameUpdated,
 			category_description: newCategoryDescriptionUpdated,
-			is_active: true,
+			is_active: false,
 		});
 
 		try {
@@ -185,7 +204,9 @@ export const CategoryList = (tokenProp: any) => {
 				{categoryData.map((category) => (
 					<div
 						key={category.id}
-						className='flex flex-col pb-3'
+						className={`flex flex-col pb-3 ${
+							category.is_active ? `bg-green-200` : `bg-white`
+						}`}
 						onMouseEnter={() =>
 							handleItemMouseEnter(
 								category.id,
@@ -196,13 +217,15 @@ export const CategoryList = (tokenProp: any) => {
 						onMouseLeave={handleItemMouseLeave}
 					>
 						<dt className='mb-1 text-gray-900 md:text-lg font-bold'>
-							{`${category.category_name} (${category.id})`}
+							{`- ${category.category_name}`}
 						</dt>
 						<dd className='text-medium font-medium'>
 							Description : {category.category_description}
 						</dd>
 						<button
-							className='w-10 bg-white hover:bg-blue-700 rounded'
+							className={`w-10 bg-white hover:bg-blue-700 rounded ${
+								category.is_active ? `bg-green-200` : `bg-white`
+							}`}
 							onClick={() => handleDelete(category.id)}
 						>
 							&#10060;
@@ -244,7 +267,9 @@ export const CategoryList = (tokenProp: any) => {
 										}
 									/>
 									<button
-										className='w-10 bg-white hover:bg-blue-700 rounded'
+										className={`w-10 bg-white hover:bg-blue-700 rounded ${
+											category.is_active ? `bg-green-200` : `bg-white`
+										}`}
 										onClick={() => {
 											handleUpdate(
 												category.id,
@@ -261,7 +286,53 @@ export const CategoryList = (tokenProp: any) => {
 					</div>
 				))}
 			</dl>
-			<div className='border border-l-0 border-r-0 border-b-0 border-solid border-gray-900'>
+
+			<div className='border py-4 px-4 border-solid border-gray-900'>
+				<label
+					htmlFor='default-search'
+					className='mb-2 text-sm font-medium text-gray-900 sr-only '
+				>
+					Search
+				</label>
+				<div className='relative'>
+					<div className='absolute start-0 top-5 flex items-center ps-3 pointer-events-none'>
+						<svg
+							className='w-4 h-4  text-gray-500 '
+							aria-hidden='true'
+							xmlns='http://www.w3.org/2000/svg'
+							fill='none'
+							viewBox='0 0 20 20'
+						>
+							<path
+								stroke='currentColor'
+								stroke-linecap='round'
+								stroke-linejoin='round'
+								stroke-width='2'
+								d='m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z'
+							/>
+						</svg>
+					</div>
+					<input
+						type='search'
+						id='default-search'
+						className='block w-2/3 p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 '
+						placeholder='Search '
+						onChange={(event) => {
+							setSearchItem(event.currentTarget.value);
+						}}
+					/>
+					<button
+						type='button'
+						onClick={() => {
+							if (searchItem !== "") {
+								handleSearch(searchItem);
+							}
+						}}
+						className='text-white relative -right-[9.5rem] -top-[2.7rem] bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 '
+					>
+						Search
+					</button>
+				</div>
 				<h1>Add new category</h1>
 				<label
 					htmlFor='category_name_input'

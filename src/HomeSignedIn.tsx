@@ -99,8 +99,10 @@ export const HomeSignedIn: React.FC = () => {
 					)}
 				</div>
 			</div>
-
-			<div className='flex justify-evenly items-center'>
+			<h1 className='my-4 text-3xl text-center font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl '>
+				Your Categories
+			</h1>
+			<div className='mt-16 flex justify-evenly items-center'>
 				{!loading && token !== "" && <CategoryList tokenProp={token} />}
 			</div>
 		</>
