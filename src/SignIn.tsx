@@ -32,7 +32,6 @@ export const SignIn = () => {
 			}
 			if (response.ok) {
 				const data = await response.json();
-				alert("Sign in successful!");
 				setToken(data.token);
 				localStorage.setItem("token", data.token);
 				navigate("/signed");

@@ -1,10 +1,10 @@
-# Toby's React Form App
+# Toby's React Categories App
 
 ### Module 4 Assignment for RevoU FSSE Amsterdam
 
 #### By Tobias Agyasta (Team 2)
 
-[Live Netlify Link](https://tobys-form.netlify.app/)
+[Live Netlify Link](https://tobys-categories.netlify.app/)
 
 ## Dependencies
 
@@ -14,6 +14,8 @@
 - This project uses [Formik](https://github.com/jaredpalmer/formik) for creating quick and easy to manage forms.
 - This project fully uses [Tailwind CSS](https://github.com/tailwindlabs/tailwindcss) for its css styles.
 - This project uses [Yup](https://www.npmjs.com/package/yup) for form input validation, and [Yup-password](https://www.npmjs.com/package/yup-password) for strong password validation
+- This project uses [react-router](https://reactrouter.com/en/main) to route between different pages.
+- This project uses [library crud vercel API](https://documenter.getpostman.com/view/15804286/2sA3Bn6CSh) for the back end.
 
 ## How to Open
 
@@ -43,15 +45,17 @@ Otherwise, you can open the build version directly from the Netlify deployment o
 
 ## About
 
-![App Screenshot](src/assets/app-screenshot.PNG)
+![App Screenshot](src/assets/app-screenshot-2.PNG)
 
-This is a form application built using React and Typescript for RevoU's Software Engineering course.
+This is a CRUD application to manage categories for books built using React and Typescript for RevoU's Software Engineering course.
 
-It is currently only client-side and front-end but will be developed for the back-end in the long run.
+It uses a custom back-end to handle user data as well as categories data.
 
 The application has the following features:
 
-1. Multistep responsive form, created using Formik and Tailwind.
-2. Strict form validation using Yup and Yup-password, with each field being required and containing other rules. A step will not be completed if you did not provide the correct values.
-3. Dynamic progress bar above the form that shows the progress throughout the multi-step form.
-4. Dynamic sidebar that shows the current step and the information for all the steps.
+1. Responsive form sign up and sign in forms, created using Formik and Tailwind.
+2. Strict form validation for sign up using Yup and Yup-password, with each field being required and containing other rules.
+3. User authentication in the API using bearer tokens. Bearer tokens are stored in the localStorage for now.
+4. Add, Update, and Delete categories.
+5. Individual category data is kept for each user.
+6. A simple search bar that highlights category names for filtering.

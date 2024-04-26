@@ -31,7 +31,7 @@ export const SignUp = () => {
 				throw new Error("Email exists in the database! Try logging in!");
 			}
 			if (response.ok) {
-				alert("You have registered! Welcome to the app.");
+				alert("You have registered! Welcome to the app. Sign in to continue.");
 				const data = await response.json();
 				console.log(data);
 				navigate("/");

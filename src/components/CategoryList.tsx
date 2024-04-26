@@ -74,21 +74,31 @@ export const CategoryList = (tokenProp: any) => {
 	/* eslint-enable */
 
 	function handleSearch(query: string) {
-		const updatedCategoryData = categoryData.map((category) => {
-			if (category.category_name === query) {
-				// Set category.is_active to true
-				category.is_active = true;
+		const queryWords = query.trim().split(/\s+/);
+		const escapedQueryWords = queryWords.map((word) =>
+			word.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")
+		);
+		const regexPattern = escapedQueryWords.join(".*");
+		const regex = new RegExp(regexPattern, "i");
 
-				// After 5 seconds, set category.is_active back to false
-				setTimeout(() => {
-					category.is_active = false;
-					// Update the state to trigger re-render
-					setCategoryData([...categoryData]);
-				}, 5000);
-			}
+		// Map through categoryData and update is_active based on the regex match
+		const updatedCategoryData = categoryData.map((category) => {
+			// Check if category name matches the regex pattern
+			category.is_active = regex.test(category.category_name as string);
 			return category;
 		});
+
+		// Update the state to trigger re-render
 		setCategoryData(updatedCategoryData);
+
+		// Set is_active back to false after 5 seconds
+		setTimeout(() => {
+			const resetCategoryData = categoryData.map((category) => ({
+				...category,
+				is_active: false,
+			}));
+			setCategoryData(resetCategoryData);
+		}, 5000);
 	}
 
 	async function handlePost() {
@@ -181,6 +191,18 @@ export const CategoryList = (tokenProp: any) => {
 		});
 
 		try {
+			categoryData.forEach((category) => {
+				if (category.id !== id) {
+					if (category.category_name === newCategoryNameUpdated) {
+						alert(
+							"Category name already exists somewhere in the list. Try again!"
+						);
+						throw new Error(
+							"Category name already exists somewhere in the list. Try again!"
+						);
+					}
+				}
+			});
 			// Fetch data from an API endpoint using async/await
 			const response = await fetch(
 				"https://library-crud-sample.vercel.app/api/category/update",
@@ -223,12 +245,12 @@ export const CategoryList = (tokenProp: any) => {
 							Description : {category.category_description}
 						</dd>
 						<button
-							className={`w-10 bg-white hover:bg-blue-700 rounded ${
+							className={`w-fit bg-white hover:bg-blue-700 rounded ${
 								category.is_active ? `bg-green-200` : `bg-white`
 							}`}
 							onClick={() => handleDelete(category.id)}
 						>
-							&#10060;
+							Delete &#10060;
 						</button>
 						{hoveredItemId === category.id && (
 							<>
@@ -267,7 +289,7 @@ export const CategoryList = (tokenProp: any) => {
 										}
 									/>
 									<button
-										className={` relative -right-32 w-10 mt-3 bg-white hover:bg-blue-700 rounded ${
+										className={` relative -right-32 w-fit mt-3 bg-white hover:bg-blue-700 rounded ${
 											category.is_active ? `bg-green-200` : `bg-white`
 										}`}
 										onClick={() => {
@@ -278,7 +300,7 @@ export const CategoryList = (tokenProp: any) => {
 											);
 										}}
 									>
-										<span className='text-2xl'> &#10003;</span>
+										<span className='text-lg'> Update &#10003;</span>
 									</button>
 								</div>
 							</>
@@ -316,7 +338,7 @@ export const CategoryList = (tokenProp: any) => {
 						type='search'
 						id='default-search'
 						className='block w-2/3 p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 '
-						placeholder='Search '
+						placeholder='by name '
 						onChange={(event) => {
 							setSearchItem(event.currentTarget.value);
 						}}
