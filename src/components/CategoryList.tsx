@@ -232,7 +232,7 @@ export const CategoryList = (tokenProp: any) => {
 						</button>
 						{hoveredItemId === category.id && (
 							<>
-								<div className='my-5'>
+								<div className='my-7'>
 									<h1>Update your category</h1>
 									<label
 										htmlFor='updated_category_name'
@@ -267,7 +267,7 @@ export const CategoryList = (tokenProp: any) => {
 										}
 									/>
 									<button
-										className={`w-10 bg-white hover:bg-blue-700 rounded ${
+										className={` relative -right-32 w-10 mt-3 bg-white hover:bg-blue-700 rounded ${
 											category.is_active ? `bg-green-200` : `bg-white`
 										}`}
 										onClick={() => {
@@ -278,7 +278,7 @@ export const CategoryList = (tokenProp: any) => {
 											);
 										}}
 									>
-										&#10003;
+										<span className='text-2xl'> &#10003;</span>
 									</button>
 								</div>
 							</>
